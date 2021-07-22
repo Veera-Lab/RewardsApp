@@ -9,6 +9,11 @@ import java.util.stream.Collectors;
 
 import com.example.model.Transaction;
 
+/**
+ *Controller for getting rewards of a customer
+ * 
+ * @author Veera Gopisetty
+ */
 public class RewardsController {
 	List<Transaction> transactions = new ArrayList<>();
 	
@@ -25,7 +30,7 @@ public class RewardsController {
 		List<Transaction> customerTransactions = getTransactionsForCustomer(customerId);
 		List<Transaction> customerTransLast30Days = customerTransactions.stream().filter(t -> !(t.getTransactionDate().before(startDate30DaysBefore))).collect(Collectors.toList());
 	    List<Transaction> customerTransLast60Days = customerTransactions.stream().filter(t -> !(t.getTransactionDate().before(startDate60DaysBefore) || t.getTransactionDate().after(startDate30DaysBefore))).collect(Collectors.toList());
-	    List<Transaction> customerTransLast90Days = customerTransactions.stream().filter(t -> !(t.getTransactionDate().before(startDate90DaysBefore) && t.getTransactionDate().after(startDate60DaysBefore))).collect(Collectors.toList());
+	    List<Transaction> customerTransLast90Days = customerTransactions.stream().filter(t -> !(t.getTransactionDate().before(startDate90DaysBefore) || t.getTransactionDate().after(startDate60DaysBefore))).collect(Collectors.toList());
 	    
 	    List<Double> rewardsPerMonth = new ArrayList<>();
 	    rewardsPerMonth.add(getCustomerRewardsForGivenTransactions(customerId, customerTransLast30Days));

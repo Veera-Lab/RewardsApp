@@ -14,12 +14,12 @@ public abstract class Transaction {
 	
 	public abstract Date getTransactionDate();
 
-	static Builder builder() {
+	public static Builder builder() {
 		return new AutoValue_Transaction.Builder();
 	}
 
 	@AutoValue.Builder
-	abstract static class Builder {
+	public abstract static class Builder {
 		public abstract Builder setPrice(double value);
 		
 		public abstract Builder setCustomerId(int value);
